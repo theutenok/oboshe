@@ -1,49 +1,49 @@
-const categoriesRouter = require("express").Router();
-const { checkAuth } = require("../middlewares/auth");
+const categoriesRouter = require('express').Router();
+
+const { checkAuth } = require('../middlewares/auth.js');
+
 const {
-  findAllCategories,
-  checkIsCategoryExists,
-  findCategoryById,
   createCategory,
+  findAllCategories,
+  findCategoryById,
   updateCategory,
   deleteCategory,
   checkEmptyName,
-} = require("../middlewares/categories");
+  checkIsCategoryExists,
+} = require('../middlewares/categories');
 const {
+  sendCategoryCreated,
   sendAllCategories,
   sendCategoryById,
-  sendCategoryCreated,
   sendCategoryUpdated,
-  sendCategoryDelete,
-} = require("../controllers/categories");
-
-categoriesRouter.get("/categories", findAllCategories, sendAllCategories);
-categoriesRouter.get("/categories/:id", findCategoryById, sendCategoryById);
+  sendCategoryDeleted,
+} = require('../controllers/categories');
 
 categoriesRouter.post(
-  "/categories",
+  '/categories',
+  checkAuth,
+  checkEmptyName,
   findAllCategories,
   checkIsCategoryExists,
-  checkEmptyName,
-  checkAuth,
   createCategory,
-  sendCategoryCreated
+  sendCategoryCreated,
 );
-
+categoriesRouter.get('/categories', findAllCategories, sendAllCategories);
+categoriesRouter.get('/categories/:id', findCategoryById, sendCategoryById);
 categoriesRouter.put(
-  "/categories/:id",
-  findCategoryById,
-  checkEmptyName,
+  '/categories/:id',
   checkAuth,
+  checkEmptyName,
+  findAllCategories,
+  checkIsCategoryExists,
   updateCategory,
-  sendCategoryUpdated
+  sendCategoryUpdated,
+);
+categoriesRouter.delete(
+  '/categories/:id',
+  checkAuth,
+  deleteCategory,
+  sendCategoryDeleted,
 );
 
-categoriesRouter.delete(
-  "/categories/:id",
-  checkAuth,
-  findCategoryById,
-  deleteCategory,
-  sendCategoryDelete
-);
 module.exports = categoriesRouter;

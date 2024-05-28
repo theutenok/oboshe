@@ -1,15 +1,13 @@
-const mongoose = require("mongoose");
-
-const DB_URL = "mongodb://localhost:27017/pindie";
+const mongoose = require('mongoose');
 
 async function connectToDatabase() {
   try {
-    await mongoose.connect(DB_URL);
-    console.log("Успешно подключились к MongoDB");
+    await mongoose.connect('mongodb://localhost:27017/pindie');
   } catch (err) {
-    console.log("При подключении MongoDB возникла ошибка");
-    console.error(err);
+    console.log('Error database/connect.js');
   }
 }
 
-module.exports = connectToDatabase;
+module.exports = {
+  connectToDatabase,
+};
