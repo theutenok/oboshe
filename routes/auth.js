@@ -1,9 +1,7 @@
-const authRouter = require('express').Router();
+const authRouter = require("express").Router();
 
-const { login } = require('../controllers/auth.js');
-// const { checkAuth } = require("../middlewares/auth.js");
+const { login } = require("../controllers/auth");
 
-authRouter.post('/auth/login', login);
-// authRouter.get("/auth/me", checkAuth, sendMe);
+authRouter.post("/auth/login", login);
 
 module.exports = authRouter;

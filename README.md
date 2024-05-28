@@ -1,4 +1,4 @@
-Ссылка на репозиторий с фронтендом: 
-
-Ссылка на домен фронтенда: 
-IP-адрес: 
+# pindie-backend
+Бэкэнд админка для сайта игр Pindie<br>
+Ссылка на бэкенд: https://pindiebackendaniltitov.nomoredomainswork.ru/<br>
+Ссылка на фронтенд: https://pindieofficial.nomoredomainswork.ru/
